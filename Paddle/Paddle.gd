@@ -14,18 +14,20 @@ func _ready():
 func _physics_process(_delta):
 	target.x = clamp(target.x, 0, Global.VP.x - 2*width)
 	position = target
-	for c in $Powerups.get_children():
-		c.payload()
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		target.x += event.relative.x
 
 func hit(_ball):
-	pass
+	$Timer.start()
+	$Images/Sprite.visible = true
+	$Images/Sprite2.visible = false
 
-func powerup(payload):
-	for c in $Powerups.get_children():
-		if c.type == payload.type:
-			c.queue_free()
-	$Powerups.call_deferred("add_child", payload)
+
+
+
+func _on_Timer_timeout():
+	$Images/Sprite.visible = false
+	$Images/Sprite2.visible = true

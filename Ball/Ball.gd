@@ -10,6 +10,8 @@ var released = true
 var initial_velocity = Vector2.ZERO
 
 func _ready():
+	$Images/ColorRect.playing = true
+	$Images/YellowShell.playing = true
 	contact_monitor = true
 	contacts_reported = 8
 	if Global.level < 0 or Global.level >= len(Levels.levels):
@@ -23,7 +25,9 @@ func _ready():
 func _on_Ball_body_entered(body):
 	if body.has_method("hit"):
 		body.hit(self)
-		accelerate = true	
+		accelerate = true
+		$Tween.interpolate_property($Images/YellowShell, "modulate:a", 1.0, 0.0, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
 
 func _input(event):
 	if not released and event.is_action_pressed("release"):
@@ -49,7 +53,7 @@ func _integrate_forces(state):
 		state.linear_velocity = state.linear_velocity.normalized() * max_speed * speed_multiplier
 
 func change_size(s):
-	$ColorRect.rect_scale = s
+	$ColorRect.scale = s
 	$CollisionShape2D.scale = s
 
 func change_speed(s):
