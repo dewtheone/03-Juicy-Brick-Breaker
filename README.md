@@ -8,13 +8,21 @@ This is a game where you try to score points by destroying bricks with a shell. 
 ## Implementation
 
 -Replaced majority of assets with Super Mario World assets
+
 -Added sound effects
+
 -Added music
+
 -Added kicking animation to paddle
+
 -Removed Power Ups (I didn't really like them)
+
 -Added animation to the ball
+
 -Added rotation to the ball
+
 -Added highlight to the ball
+
 
 
 ## References
