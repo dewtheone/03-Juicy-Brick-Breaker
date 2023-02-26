@@ -35,10 +35,13 @@ func _input(event):
 		released = true
 
 func _integrate_forces(state):
+	
 	if not released:
 		var paddle = get_node_or_null("/root/Game/Paddle_Container/Paddle")
 		if paddle != null:
-			state.transform.origin = Vector2(paddle.position.x + paddle.width, paddle.position.y - 30)	
+			state.transform.origin = Vector2(paddle.position.x + paddle.width, paddle.position.y - 30)
+	else:
+		distort()
 
 	if position.y > Global.VP.y + 100:
 		die()
@@ -61,3 +64,11 @@ func change_speed(s):
 
 func die():
 	queue_free()
+	
+	
+export var distort_effect = 0.0002
+func distort():
+	$Images.rotation = linear_velocity.angle()
+	
+	
+

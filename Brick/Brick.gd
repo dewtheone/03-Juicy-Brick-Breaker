@@ -25,3 +25,6 @@ func die():
 		Global.update_fever(score)
 	get_parent().check_level()
 	
+	var brick_audio = get_node_or_null("/root/Game/Brick_Audio")
+	if brick_audio != null:
+		brick_audio.play()

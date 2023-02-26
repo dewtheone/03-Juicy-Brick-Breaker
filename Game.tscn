@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Brick/Brick_Container.gd" type="Script" id=1]
 [ext_resource path="res://Paddle/Paddle.tscn" type="PackedScene" id=2]
@@ -9,6 +9,13 @@
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Instructions.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Effects/Fever.gd" type="Script" id=9]
+[ext_resource path="res://Assets/sfx/wall hit.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/sfx/shell kick.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/sfx/brick break.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/sfx/fuck up.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/sfx/sprites/background.png" type="Texture" id=14]
+[ext_resource path="res://Assets/sfx/[GilvaSunner Reupload] Athletic Theme - Super Mario World.mp3" type="AudioStream" id=15]
+[ext_resource path="res://Assets/sfx/sprites/wall.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 500 )
@@ -24,11 +31,10 @@ script = ExtResource( 4 )
 [node name="Wall_Left" type="StaticBody2D" parent="Wall_Container"]
 script = ExtResource( 6 )
 
-[node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Left"]
-margin_left = -190.0
-margin_top = -100.0
-margin_right = 10.0
-margin_bottom = 900.0
+[node name="ColorRect" type="Sprite" parent="Wall_Container/Wall_Left"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+offset = Vector2( -5, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Left"]
 position = Vector2( -90, 400 )
@@ -38,11 +44,10 @@ shape = SubResource( 1 )
 position = Vector2( 1024, 0 )
 script = ExtResource( 6 )
 
-[node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Right"]
-margin_left = -10.0
-margin_top = -100.0
-margin_right = 190.0
-margin_bottom = 900.0
+[node name="ColorRect" type="Sprite" parent="Wall_Container/Wall_Right"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+offset = Vector2( 5, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Right"]
 position = Vector2( 90, 400 )
@@ -51,11 +56,12 @@ shape = SubResource( 1 )
 [node name="Wall_Top" type="StaticBody2D" parent="Wall_Container"]
 script = ExtResource( 6 )
 
-[node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Top"]
-margin_left = -100.0
-margin_top = -190.0
-margin_right = 1124.0
-margin_bottom = 10.0
+[node name="ColorRect" type="Sprite" parent="Wall_Container/Wall_Top"]
+position = Vector2( 0, -10 )
+rotation = 1.5708
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+offset = Vector2( -3, -50 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Top"]
 position = Vector2( 512, -90 )
@@ -90,5 +96,26 @@ visible = false
 
 [node name="Instructions" parent="UI" instance=ExtResource( 8 )]
 pause_mode = 2
+
+[node name="Paddle_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Wall_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Brick_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Ball_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 509.5, 639 )
+scale = Vector2( 1.02051, 1 )
+z_index = -5
+texture = ExtResource( 14 )
 
 [connection signal="timeout" from="Fever/Timer" to="Fever" method="_on_Timer_timeout"]

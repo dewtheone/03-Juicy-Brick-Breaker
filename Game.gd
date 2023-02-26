@@ -25,3 +25,6 @@ func _ready():
 		var Instructions = get_node_or_null("/root/Game/UI/Instructions")
 		if Instructions != null:
 			Instructions.set_instructions(level["name"],level["instructions"])
+	var music = get_node_or_null("/root/Game/Music")
+	if music != null:
+		music.play()

@@ -24,6 +24,9 @@ func hit(_ball):
 	$Timer.start()
 	$Images/Sprite.visible = true
 	$Images/Sprite2.visible = false
+	var paddle_audio = get_node_or_null("/root/Game/Paddle_Audio")
+	if paddle_audio != null:
+		paddle_audio.play()
 
 
 

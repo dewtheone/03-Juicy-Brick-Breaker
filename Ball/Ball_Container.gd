@@ -8,6 +8,9 @@ func _ready():
 
 func _physics_process(_delta):
 	if get_child_count() == 0:
+		var ball_audio = get_node_or_null("/root/Game/Ball_Audio")
+		if ball_audio != null:
+			ball_audio.play()
 		Global.update_lives(-1)
 		Global.update_fever(-Global.fever)
 		make_ball()
