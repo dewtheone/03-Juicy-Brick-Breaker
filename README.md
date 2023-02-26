@@ -32,6 +32,7 @@ Created in Godot
 Original game framework created by Jason Francis
 
 Assets were pulled from Super Mario World using YouTube uploads of the soundtrack and The Spriters Resource
+
 The Spriters Resource - https://www.spriters-resource.com
 
 Sprite editing was done using Piskel
